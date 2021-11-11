@@ -38,4 +38,12 @@ describe Enigma do
     date: "061092"
     })
   end
+
+  it 'can decrypt messages and handle uppercase letters' do 
+    expect(enigma.decrypt("keDer ohUlw", "02715", "040895")).to eq({
+    decryption: "hello world",
+    key: "02715",
+    date: "040895"
+    })
+  end 
 end 
