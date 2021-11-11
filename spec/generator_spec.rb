@@ -27,4 +27,12 @@ describe Generator do
     expect(generator.key_generator.sample.class).to eq(Integer)
     expect(range.include?(generator.key_generator.length)).to be(true)
   end
+
+  it '#key padding' do
+    expect(generator.key_padding([1])).to eq("00001")
+    expect(generator.key_padding([1, 2, 3])).to eq("00123")
+    expect(generator.key_padding([1, 2, 3, 4])).to eq("01234")
+    expect(generator.key_padding([1, 2, 3, 4, 5])).to eq("12345")
+    expect(generator.key_padding([0, 0, 0, 0])).to eq("00000")
+  end
 end 
