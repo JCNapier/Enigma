@@ -35,4 +35,12 @@ describe Generator do
     expect(generator.key_padding([1, 2, 3, 4, 5])).to eq("12345")
     expect(generator.key_padding([0, 0, 0, 0])).to eq("00000")
   end
+
+  it 'can generate an offset' do
+    expect(generator.offset_generator("061092")).to eq("2464")
+    expect(generator.offset_generator("040895")).to eq("1025")
+    expect(generator.offset_generator(Time.new(1995, 8, 4))).to eq("1025")
+    expect(generator.offset_generator(Time.new(1930, 12, 8))).to eq("2900")
+    expect(generator.offset_generator(Time.new(2021, 12, 8))).to eq("0841")
+  end
 end 
