@@ -1,3 +1,5 @@
+require "time"
+
 class Generator
   attr_reader :alphabet
 
