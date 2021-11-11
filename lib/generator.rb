@@ -26,6 +26,7 @@ class Generator
   end
 
   def offset_generator(time = Time.now) #formats time as string
+    time = Time.now if time == nil
     time_array = []
     offset = nil
 

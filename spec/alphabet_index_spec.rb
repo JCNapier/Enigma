@@ -1,5 +1,6 @@
 require "rspec"
 require "./lib/alphabet_index"
+require_relative "./spec_helper"
 
 describe AlphabetIndex do 
   let(:alpha) {AlphabetIndex.new} 
