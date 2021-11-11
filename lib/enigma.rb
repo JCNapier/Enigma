@@ -63,7 +63,7 @@ class Enigma
     @encrypted
   end
 
-  def decrypt(message, key, time = @gen_time)
+  def decrypt(message, key, time)
     new_message = message.downcase
     new_key     = @generator.key_padding(key)
     new_time    = @generator.offset_generator(time)
@@ -73,7 +73,7 @@ class Enigma
 
     if time.class == String
       decrypted[:date] = time
-    elsif
+    elsif 
       decrypted[:date] = new_time
     end
 
