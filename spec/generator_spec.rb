@@ -1,5 +1,6 @@
 require "rspec"
 require "./lib/generator"
+require_relative "./spec_helper"
 
 describe Generator do
   let(:generator) {Generator.new}
