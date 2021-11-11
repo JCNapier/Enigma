@@ -3,6 +3,7 @@ require "rspec"
 require "./lib/enigma"
 require "./lib/generator"
 require "./lib/alphabet_index"
+require_relative "./spec_helper"
 
 describe Enigma do
   let(:enigma) {Enigma.new}
