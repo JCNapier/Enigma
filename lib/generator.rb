@@ -16,4 +16,10 @@ class Generator
     end
     key
   end
+
+  #takes array, turns array to string with leading zeros 
+  def key_padding(key_numbers)
+    number_string = key_numbers.to_s.delete("[] ,")
+    number_string.rjust(5, '0')
+  end
 end 
