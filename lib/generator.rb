@@ -40,7 +40,7 @@ class Generator
       squared = time_array.join.to_i ** 2
       offset  = squared.to_s.slice(-4..-1)
     elsif 
-      offset = ((time.to_i) ** 2).to_s.slice(6..9)
+      offset = ((time.to_i) ** 2).to_s.slice(-4..-1)
     end 
     offset
   end
