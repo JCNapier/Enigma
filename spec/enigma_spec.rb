@@ -22,4 +22,20 @@ describe Enigma do
     expect(enigma.encrypted).to be_a(Hash)
     expect(enigma.encrypted.length).to eq(3)
   end
+
+  it 'can encrypt messages' do
+    expect(enigma.encrypt("hello world", "02715", "040895")).to eq({
+    encryption: "keder ohulw",
+    key: "02715",
+    date: "040895"
+    })
+  end 
+
+  it 'can encrypt upper case messages' do 
+    expect(enigma.encrypt("JOHN", "03330", "061092")).to eq({
+    encryption: "oytu",
+    key: "03330",
+    date: "061092"
+    })
+  end
 end 
