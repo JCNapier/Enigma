@@ -36,8 +36,6 @@ class Enigma
         letter_code << letter
       else
         letter_code << @alphabet_hash.index[letter]
-      # elsif 
-      #   letter_code << letter
       end
     end
     
@@ -62,7 +60,7 @@ class Enigma
     @encrypted[:encryption] = encrypted_string.join
     @encrypted[:key] = new_key
     @encrypted[:date] = time
-    @encrypted
+    @encrypted[:encryption]
   end
 
   def decrypt(message, key, time)
@@ -85,11 +83,18 @@ class Enigma
     d = ((new_key.slice(3..4).to_i) + (new_time.slice(3).to_i)) * -1 
 
       #creates integers array representing letters
+    # new_message.chars.each do |letter|
+    #   if letter != " "
+    #     letter_code << @alphabet_hash.index[letter]
+    #   elsif 
+    #     letter_code << letter
+    #   end
+    # end
     new_message.chars.each do |letter|
-      if letter != " "
-        letter_code << @alphabet_hash.index[letter]
-      elsif 
+      if !@alphabet_hash.index.include?(letter)
         letter_code << letter
+      else
+        letter_code << @alphabet_hash.index[letter]
       end
     end
 
@@ -113,6 +118,6 @@ class Enigma
     end
     decrypted[:decryption] = decrypted_string.join
     decrypted[:key] = new_key
-    decrypted
+    decrypted[:decryption]
   end
 end 
