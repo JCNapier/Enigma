@@ -32,10 +32,12 @@ class Enigma
 
       #creates integers array representing letters
     new_message.chars.each do |letter|
-      if letter != " "
-        letter_code << @alphabet_hash.index[letter]
-      elsif 
+      if !@alphabet_hash.index.include?(letter)
         letter_code << letter
+      else
+        letter_code << @alphabet_hash.index[letter]
+      # elsif 
+      #   letter_code << letter
       end
     end
     
