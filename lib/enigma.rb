@@ -7,7 +7,8 @@ class Enigma
               :alphabet_hash,
               :gen_key, 
               :gen_time, 
-              :encrypted
+              :encrypted,
+              :decrypted
 
   def initialize 
     @generator      = Generator.new 
@@ -15,6 +16,7 @@ class Enigma
     @gen_key        = @generator.key_padding(@generator.key_generator) 
     @gen_time       = @generator.offset_generator
     @encrypted      = {encryption: nil, key: nil, date: nil}
+    @decrypted      = {decryption: nil, key: nil, date: nil}
   end
 
   def encrypt(message, key = @gen_key, time = @gen_time)
@@ -60,7 +62,7 @@ class Enigma
     @encrypted[:encryption] = encrypted_string.join
     @encrypted[:key] = new_key
     @encrypted[:date] = time
-    @encrypted[:encryption]
+    @encrypted
   end
 
   def decrypt(message, key, time)
@@ -68,13 +70,13 @@ class Enigma
     new_key     = @generator.key_padding(key)
     new_time    = @generator.offset_generator(time)
     letter_code = []
-    decrypted   = {decryption: nil, key: nil, date: nil}
+    # decrypted   = {decryption: nil, key: nil, date: nil}
     decrypted_string = []
 
     if time.class == String
-      decrypted[:date] = time
+      @decrypted[:date] = time
     elsif 
-      decrypted[:date] = new_time
+      @decrypted[:date] = new_time
     end
 
     a = ((new_key.slice(0..1).to_i) + (new_time.slice(0).to_i)) * -1
@@ -82,14 +84,6 @@ class Enigma
     c = ((new_key.slice(2..3).to_i) + (new_time.slice(2).to_i)) * -1
     d = ((new_key.slice(3..4).to_i) + (new_time.slice(3).to_i)) * -1 
 
-      #creates integers array representing letters
-    # new_message.chars.each do |letter|
-    #   if letter != " "
-    #     letter_code << @alphabet_hash.index[letter]
-    #   elsif 
-    #     letter_code << letter
-    #   end
-    # end
     new_message.chars.each do |letter|
       if !@alphabet_hash.index.include?(letter)
         letter_code << letter
@@ -116,8 +110,8 @@ class Enigma
         decrypted_string << @generator.alphabet.rotate(d)[num]
       end
     end
-    decrypted[:decryption] = decrypted_string.join
-    decrypted[:key] = new_key
-    decrypted[:decryption]
+    @decrypted[:decryption] = decrypted_string.join
+    @decrypted[:key] = new_key
+    @decrypted
   end
 end 
