@@ -24,29 +24,6 @@ describe Enigma do
     expect(enigma.encrypted.length).to eq(3)
   end
 
-  it '#create shift' do 
-    expect(enigma.create_shift("06100", "6641")).to eq([12, 67, 14, 1])
-    expect(enigma.create_shift("00000", "4852")).to eq([4, 8, 5, 2])
-  end
-
-  it '#reverse shift' do 
-    expect(enigma.reverse_shift("00000", "4852")).to eq([-4, -8, -5, -2])
-    expect(enigma.reverse_shift("00409", "2881")).to eq([-2, -12, -48, -10])
-  end
-
-  it '#letters to integers' do 
-    expect(enigma.letters_to_integers("johnnyboy!")).to eq([9, 14, 7, 13, 13, 24, 1, 14, 24, "!"])
-    expect(enigma.letters_to_integers("dog")).to eq([3, 14, 6])
-  end
-
-  it '#shift applicator' do 
-    expect(enigma.shift_applicator([9, 14, 7, 13, 13, 24, "!", 1, 14, 24, "!"], "00009", "6641")).to eq("lwpxpf!lqf!")
-  end
-
-  it '#unshift applicator' do 
-    expect(enigma.un_shift_applicator([11, 22, 15, 20, 15, 5, "!", 8, 16, 5, "!", "\n"], "00409", "6641"))
-  end
-
   it 'can encrypt messages' do
     expect(enigma.encrypt("hello world", "02715", "040895")).to eq({
     encryption: "keder ohulw",
