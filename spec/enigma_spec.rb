@@ -40,6 +40,30 @@ describe Enigma do
     })
   end
 
+  it 'can encrypt special characters' do 
+    expect(enigma.encrypt("JOHN!", "03330", "061092")).to eq({
+    encryption: "oytu!",
+    key: "03330",
+    date: "061092"
+    })
+  end
+
+  it 'can decrypt messages' do 
+    expect(enigma.decrypt("keder ohulw", "02715", "040895")).to eq({
+    decryption: "hello world",
+    key: "02715",
+    date: "040895"
+    })
+  end
+
+  it 'can decrypt special characters' do 
+    expect(enigma.decrypt("oytu!", "03330", "061092")).to eq({
+    decryption: "john!",
+    key: "03330",
+    date: "061092"
+    })
+  end
+
   it 'can decrypt messages and handle uppercase letters' do 
     expect(enigma.decrypt("keDer ohUlw", "02715", "040895")).to eq({
     decryption: "hello world",

@@ -1,4 +1,4 @@
-require "time"
+require "./lib/shift"
 require "./lib/enigma"
 require "./lib/generator"
 require "./lib/alphabet_index"
